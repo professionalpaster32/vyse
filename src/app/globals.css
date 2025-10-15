@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
@@ -50,3 +51,54 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 16px;
 }
+=======
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #000;
+  color: white;
+  overflow-x: hidden;
+}
+
+.electric-border {
+  position: relative;
+  isolation: isolate;
+}
+
+.eb-layers,
+.eb-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.eb-stroke {
+  border: var(--eb-border-width) solid var(--electric-border-color);
+  border-radius: 16px;
+}
+
+.eb-glow-1,
+.eb-glow-2,
+.eb-background-glow {
+  border-radius: 16px;
+  filter: blur(20px);
+  opacity: 0.6;
+}
+
+.eb-glow-1 {
+  border: var(--eb-border-width) solid var(--electric-border-color);
+  opacity: 0.4;
+}
+
+.eb-glow-2 {
+  border: calc(var(--eb-border-width) * 2) solid var(--electric-border-color);
+  opacity: 0.2;
+}
+
+.eb-background-glow {
+  background: var(--electric-border-color);
+  opacity: 0.1;
+}
+>>>>>>> 52a295a1e651ba8d1ace1d24f577e3608ce88296

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .DS_Store
 node_modules
 *.pem
@@ -22,3 +23,12 @@ npm-error.log*
 
 # Next.js telemetry
 .vercel
+=======
+node_modules
+.next
+out
+build
+dist
+*.log
+.DS_Store
+>>>>>>> 52a295a1e651ba8d1ace1d24f577e3608ce88296
