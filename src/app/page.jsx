@@ -4,13 +4,15 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Discord } from 'lucide-react';
-import BeamsScene from '@/components/Beams';
 import StarsBackground from '@/components/StarsBackground';
 import HeadlessAccordionDemo from '@/components/FAQs';
 
+// Dynamically import BeamsScene with SSR disabled
+const BeamsScene = dynamic(() => import('@/components/Beams'), { ssr: false });
+
 export default function HomePage() {
   const [displayText, setDisplayText] = useState('');
-  const [phase, setPhase] = useState(0); // 0: welcome, 1: main loop, 2: final
+  const [phase, setPhase] = useState(0);
 
   const sequence = [
     "Welcome to Vyse",
@@ -22,9 +24,11 @@ export default function HomePage() {
   ];
 
   useEffect(() => {
-    const visited = localStorage.getItem('vyse_visited');
+    const visited = typeof window !== 'undefined' ? localStorage.getItem('vyse_visited') : null;
     if (!visited) {
-      localStorage.setItem('vyse_visited', '1');
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('vyse_visited', '1');
+      }
       typeText(sequence[0], 0);
     } else {
       setDisplayText("Improve Your Experience With Vyse");
@@ -55,7 +59,6 @@ export default function HomePage() {
 
     let current = sequence[step];
     if (step === 2) {
-      // Animate "Future" → "Alt Gen" → "Members" → "Followers"
       animateServiceText();
       return;
     }
@@ -88,7 +91,6 @@ export default function HomePage() {
       <StarsBackground />
       <BeamsScene />
 
-      {/* Navbar */}
       <header className="fixed top-0 left-0 right-0 z-50 p-6">
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           <div className="flex items-center space-x-2">
@@ -115,7 +117,6 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Hero Text */}
       <div className="flex flex-col items-center justify-center min-h-screen pt-20 px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -132,10 +133,11 @@ export default function HomePage() {
         </motion.div>
       </div>
 
-      {/* FAQ Section */}
       <section className="relative z-10 py-20 px-4 max-w-4xl mx-auto">
         <HeadlessAccordionDemo />
       </section>
     </div>
   );
 }
+
+import dynamic from 'next/dynamic';
