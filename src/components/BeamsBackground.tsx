@@ -10,6 +10,7 @@ import { degToRad } from 'three/src/math/MathUtils.js';
 const extendMaterial = (BaseMaterial: any, cfg: any) => {
   const physical = THREE.ShaderLib.physical;
   const { vertexShader: baseVert, fragmentShader: baseFrag, uniforms: baseUniforms } = physical;
+  // Fix: Use optional chaining or provide a default empty object if 'defines' doesn't exist
   const baseDefines = physical.defines ?? {};
 
   const uniforms = THREE.UniformsUtils.clone(baseUniforms);
@@ -37,7 +38,7 @@ const extendMaterial = (BaseMaterial: any, cfg: any) => {
   }
 
   const mat = new THREE.ShaderMaterial({
-    defines: { ...baseDefines },
+    defines: { ...baseDefines }, // Use the potentially empty object or the actual defines
     uniforms,
     vertexShader: vert,
     fragmentShader: frag,
@@ -186,7 +187,7 @@ const Beams = ({
   vec3 getNormal(vec3 pos) {
     vec3 curpos = getCurrentPos(pos);
     vec3 nextposX = getCurrentPos(pos + vec3(0.01, 0.0, 0.0));
-    vec3 nextposZ = GetCurrentPos(pos + vec3(0.0, -0.01, 0.0));
+    vec3 nextposZ = getCurrentPos(pos + vec3(0.0, -0.01, 0.0));
     vec3 tangentX = normalize(nextposX - curpos);
     vec3 tangentZ = normalize(nextposZ - curpos);
     return normalize(cross(tangentZ, tangentX));
