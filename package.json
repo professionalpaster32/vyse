@@ -1,10 +1,6 @@
 {
   "name": "vyse",
-<<<<<<< HEAD
   "version": "0.1.0",
-=======
-  "version": "1.0.0",
->>>>>>> 52a295a1e651ba8d1ace1d24f577e3608ce88296
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -16,7 +12,6 @@
     "next": "^14",
     "react": "^18",
     "react-dom": "^18",
-<<<<<<< HEAD
     "three": "^0.160.0",
     "@react-three/fiber": "^8.16.0",
     "@react-three/drei": "^9.88.0",
@@ -28,17 +23,5 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/node": "^20"
-=======
-    "three": "^0.162.0",
-    "@react-three/fiber": "^8.17.10",
-    "@react-three/drei": "^9.95.0",
-    "framer-motion": "^11.3.18",
-    "lucide-react": "^0.447.0",
-    "next-themes": "^0.3.0"
-  },
-  "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5"
->>>>>>> 52a295a1e651ba8d1ace1d24f577e3608ce88296
   }
 }
