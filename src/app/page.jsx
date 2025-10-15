@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Discord } from 'lucide-react';
 import StarsBackground from '@/components/StarsBackground';
 import HeadlessAccordionDemo from '@/components/FAQs';
+import dynamic from 'next/dynamic';
 
 // Dynamically import BeamsScene with SSR disabled
 const BeamsScene = dynamic(() => import('@/components/Beams'), { ssr: false });
@@ -139,5 +140,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-import dynamic from 'next/dynamic';
