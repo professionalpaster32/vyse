@@ -7,11 +7,19 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { PerspectiveCamera } from '@react-three/drei';
 import { degToRad } from 'three/src/math/MathUtils.js';
 
+// Define a type that includes the potentially missing 'defines' property
+type ShaderLibPhysical = {
+  vertexShader: string;
+  fragmentShader: string;
+  uniforms: THREE.UniformsGroup | THREE.IUniforms;
+  defines?: Record<string, any>; // Make 'defines' optional
+};
+
 const extendMaterial = (BaseMaterial: any, cfg: any) => {
-  const physical = THREE.ShaderLib.physical;
+  const physical: ShaderLibPhysical = THREE.ShaderLib.physical;
   const { vertexShader: baseVert, fragmentShader: baseFrag, uniforms: baseUniforms } = physical;
-  // Fix: Use optional chaining or provide a default empty object if 'defines' doesn't exist
-  const baseDefines = physical.defines ?? {};
+  // Access 'defines' safely, defaulting to an empty object if it doesn't exist
+  const baseDefines = (physical.defines as Record<string, any>) ?? {};
 
   const uniforms = THREE.UniformsUtils.clone(baseUniforms);
 
@@ -38,7 +46,7 @@ const extendMaterial = (BaseMaterial: any, cfg: any) => {
   }
 
   const mat = new THREE.ShaderMaterial({
-    defines: { ...baseDefines }, // Use the potentially empty object or the actual defines
+    defines: { ...baseDefines },
     uniforms,
     vertexShader: vert,
     fragmentShader: frag,
