@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Discord } from 'lucide-react';
-import Beams from '@/components/Beams';
+import BeamsScene from '@/components/Beams';
 import StarsBackground from '@/components/StarsBackground';
 import HeadlessAccordionDemo from '@/components/FAQs';
 
@@ -86,7 +86,7 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
       <StarsBackground />
-      <Beams />
+      <BeamsScene />
 
       {/* Navbar */}
       <header className="fixed top-0 left-0 right-0 z-50 p-6">
