@@ -11,7 +11,7 @@ import { degToRad } from 'three/src/math/MathUtils.js';
 type ShaderLibPhysical = {
   vertexShader: string;
   fragmentShader: string;
-  uniforms: THREE.UniformsGroup | THREE.IUniforms;
+  uniforms: THREE.UniformsGroup | Record<string, THREE.IUniform>;
   defines?: Record<string, any>; // Make 'defines' optional
 };
 
@@ -134,7 +134,6 @@ float cnoise(vec3 P){
   g001 *= norm1.x; g011 *= norm1.y; g101 *= norm1.z; g111 *= norm1.w;
   float n000 = dot(g000, Pf0);
   float n100 = dot(g100, vec3(Pf1.x,Pf0.yz));
-  float n010 = dot(g010, vec3(Pf0.x,Pf1.y,Pf0.z));
   float n110 = dot(g110, vec3(Pf1.xy,Pf0.z));
   float n001 = dot(g001, vec3(Pf0.xy,Pf1.z));
   float n101 = dot(g101, vec3(Pf1.x,Pf0.y,Pf1.z));
